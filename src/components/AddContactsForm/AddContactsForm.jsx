@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { nanoid } from 'nanoid';
+import { nanoid } from '@reduxjs/toolkit';
 import { Form, Label, Input } from './AddContactsForm.styled';
 import { Button } from 'components/Button/Button';
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { nanoid } from 'nanoid';
+import { nanoid } from '@reduxjs/toolkit';
 
 import { Section } from 'components/Section/Section';
 import { AddContactsForm } from 'components/AddContactsForm/AddContactsForm';
