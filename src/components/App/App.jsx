@@ -17,12 +17,10 @@ import { Wrapper } from './App.styled';
 //     : JSON.parse(localStorage.getItem('userContacts'));
 
 export const App = () => {
-  
-
   // useEffect(() => {
   //   localStorage.setItem('userContacts', JSON.stringify(contacts));
   // }, [contacts]);
-  
+
   return (
     <Wrapper>
       <Section title="Phonebook">
@@ -30,8 +28,7 @@ export const App = () => {
       </Section>
       <Section title="Contacts">
         <Filter />
-        <ContactsList
-        />
+        <ContactsList />
       </Section>
     </Wrapper>
   );
