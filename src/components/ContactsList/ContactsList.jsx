@@ -10,20 +10,21 @@ import { Contact } from './ContactsList.styled';
 export const ContactsList = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(getContacts);
-  const {filter} = useSelector(getFilter);
-  
+  const { filter } = useSelector(getFilter);
+
   const handleDeleteContact = contactId => dispatch(deleteContact(contactId));
 
   const visibleContacts = contacts.filter(contact =>
     contact.name.toLowerCase().includes(filter.toLowerCase())
   );
-    return (
+
+  return (
     <ul>
       {visibleContacts.map(({ id, name, number }) => (
         <Contact key={id}>
           <FiUser />
           {name}: {number}
-          <button type="button" onClick={()=>handleDeleteContact(id)}>
+          <button type="button" onClick={() => handleDeleteContact(id)}>
             Delete
           </button>
         </Contact>
