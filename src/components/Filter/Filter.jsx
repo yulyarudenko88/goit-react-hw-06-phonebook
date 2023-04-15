@@ -1,22 +1,31 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { nanoid } from 'nanoid';
-import { Label, Input } from 'components/AddContactsForm/AddContactsForm.styled';
+import { nanoid } from '@reduxjs/toolkit';
+import { useDispatch, useSelector } from 'react-redux';
 
-export const Filter = ({ value, onChange }) => (
-  <>
-    <Label htmlFor={nanoid()}>Find contacts by name</Label>
-    <Input
-      type="text"
-      name="filter"
-      value={value}
-      onChange={onChange}
-      id={nanoid()}
-    />
-  </>
-);
+import { getFilter } from 'redux/filter/selectors';
+import { setFilter } from 'redux/filter/filterSlice';
 
-Filter.propTypes = {
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func,
+import {
+  Label,
+  Input,
+} from 'components/AddContactsForm/AddContactsForm.styled';
+
+export const Filter = ({ value, onChange }) => {
+  const dispatch = useDispatch();
+  const {filter} = useSelector(getFilter);
+
+  const changeFilter = e => dispatch(setFilter(e.target.value));
+
+  return (
+    <>
+      <Label htmlFor={nanoid()}>Find contacts by name</Label>
+      <Input
+        type="text"
+        name="filter"
+        value={filter}
+        onChange={changeFilter}
+        id={nanoid()}
+      />
+    </>
+  );
 };
