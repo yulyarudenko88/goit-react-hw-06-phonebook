@@ -1,30 +1,33 @@
-import PropTypes from 'prop-types';
 import { FiUser } from 'react-icons/fi';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { getContacts } from 'redux/contacts/selectors';
+import { getFilter } from 'redux/filter/selectors';
+import { deleteContact } from 'redux/contacts/contactsSlice';
+
 import { Contact } from './ContactsList.styled';
 
-export const ContactsList = ({ contacts, onDeleteContact }) => {
-  return (
+export const ContactsList = () => {
+  const dispatch = useDispatch();
+  const contacts = useSelector(getContacts);
+  const {filter} = useSelector(getFilter);
+  
+  const handleDeleteContact = contactId => dispatch(deleteContact(contactId));
+
+  const visibleContacts = contacts.filter(contact =>
+    contact.name.toLowerCase().includes(filter.toLowerCase())
+  );
+    return (
     <ul>
-      {contacts.map(({ id, name, number }) => (
+      {visibleContacts.map(({ id, name, number }) => (
         <Contact key={id}>
           <FiUser />
           {name}: {number}
-          <button type="button" onClick={() => onDeleteContact(id)}>
+          <button type="button" onClick={()=>handleDeleteContact(id)}>
             Delete
           </button>
         </Contact>
       ))}
     </ul>
   );
-};
-
-ContactsList.propTypes = {
-  contacts: PropTypes.arrayOf(
-    PropTypes.exact({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-      onClick: PropTypes.func,
-    })
-  ),
 };
