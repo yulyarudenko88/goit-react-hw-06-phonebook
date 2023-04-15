@@ -7,9 +7,9 @@ import { ContactsList } from 'components/ContactsList/ContactsList';
 import { Filter } from 'components/Filter/Filter';
 import { Wrapper } from './App.styled';
 
-import { getContacts } from 'redux/contacts/selectors';
+// import { getContacts } from 'redux/contacts/selectors';
 import { getFilter } from 'redux/filter/selectors';
-import { deleteContact } from 'redux/contacts/contactsSlice';
+// import { deleteContact } from 'redux/contacts/contactsSlice';
 import { setFilter } from 'redux/filter/filterSlice';
 
 // const parseContacts =
@@ -24,7 +24,7 @@ import { setFilter } from 'redux/filter/filterSlice';
 
 export const App = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
+  // const contacts = useSelector(getContacts);
   const {filter} = useSelector(getFilter);
   
 
@@ -32,13 +32,13 @@ export const App = () => {
   //   localStorage.setItem('userContacts', JSON.stringify(contacts));
   // }, [contacts]);
 
-  const handleDeleteContact = contactId => dispatch(deleteContact(contactId));
+  // const handleDeleteContact = contactId => dispatch(deleteContact(contactId));
 
   const changeFilter = e => dispatch(setFilter(e.target.value));
 
-  const visibleContacts = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(filter.toLowerCase())
-  );
+  // const visibleContacts = contacts.filter(contact =>
+  //   contact.name.toLowerCase().includes(filter.toLowerCase())
+  // );
 
   return (
     <Wrapper>
@@ -48,8 +48,6 @@ export const App = () => {
       <Section title="Contacts">
         <Filter value={filter} onChange={changeFilter} />
         <ContactsList
-          contacts={visibleContacts}
-          onDeleteContact={handleDeleteContact}
         />
       </Section>
     </Wrapper>
